@@ -11,27 +11,12 @@ not tested and still in development. This is written on iPad in Notes app (serio
 /* Crystal Edge's imports */
 use crystal\edge\FileSystemExtract;
 use crystal\edge\Site;
+/* Utils */
+use crystal\edge;
 
 /* Filters */
-$read = function($pages)
-{
-  return array_map(function($data)
-  {
-    $data['content'] = file_get_contents($data['path']);
-    
-    return $data;
-  }, $pages);
-};
-
-$parsedown = function($pages)
-{
-  return array_map(function($data)
-  {
-    $data['content'] = Parsedown::instance()->text($data['content']);
-    
-    return $data;
-  }, $pages);
-};
+$read = apply('path', 'content', 'file_get_contents');
+$parsedown = apply('content', 'content', [new Parsedown, 'text']);
 
 /* Website */
 $site = new Site(new FileSystemExtract('./content/'));
