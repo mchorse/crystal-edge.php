@@ -15,16 +15,12 @@ use crystal\edge\Site;
 /* Filters */
 $read = function($pages)
 {
-  $output = [];
-
-  foreach($pages as $page)
+  return array_map(function($data)
   {
-    $output[$page] = [
-      'content' => file_get_contents("./content/$page")
-    ];
-  }
-
-  return $output;
+    $data['content'] = file_get_contents($data['path']);
+    
+    return $data;
+  }, $pages);
 };
 
 $parsedown = function($pages)
