@@ -39,7 +39,7 @@ class FileSystemExtract implements Extract
       return substr($file, strlen($path) + 1);
     };
     
-    $iterator = new new RecursiveDirectoryIterator($path);
+    $iterator = new RecursiveDirectoryIterator($path);
     $iterator = new RecursiveIteratorIterator($iterator);
     
     $files = iterator_to_array($iterator);
