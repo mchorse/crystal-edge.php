@@ -44,7 +44,13 @@ class FileSystemExtract implements Extract
     
     $files = iterator_to_array($iterator);
     $files = array_filter($files, $only_files);
+    $pages = [];
     
-    return array_map($trim_path, $files);
+    foreach($files as $path)
+    {
+      $pages[$trim_path($path)] = compact('path');
+    }
+    
+    return $pages;
   }
 }
