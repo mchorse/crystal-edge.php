@@ -37,7 +37,7 @@ class Site
   {
     $pages = $this->pages;
 
-    foreach ($this->filters as  $filter)
+    foreach ($this->filters as $filter)
     {
       $pages = $filter($pages);
     }
