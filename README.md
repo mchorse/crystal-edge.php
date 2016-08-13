@@ -1,2 +1,7 @@
-# crystal-edge.php
-Simple (~100 LOC) static website engine in PHP
+# Crystal Edge
+
+Simple light-weight static website engine wriiten in PHP.
+
+## License
+
+Licensed under MIT license, see [LICENSE](./LICENSE) file.
