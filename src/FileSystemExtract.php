@@ -9,11 +9,17 @@ namespace crystal\edge;
  */
 class FileSystemExtract implements Extract
 {
+  /**
+   * @var string $path Source from where to extract the data from files
+   */
   private $path = '';
   
+  /**
+   * Initiate with path
+   */
   public function __construct($path)
   {
-    $this->path = $path;
+    $this->path = realpath($path);
   }
   
   /**
