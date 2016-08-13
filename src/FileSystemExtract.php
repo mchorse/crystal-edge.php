@@ -27,6 +27,24 @@ class FileSystemExtract implements Extract
    */
   public function extract()
   {
-    return [];
+    $path = $this->path;
+    
+    $only_files = function($file)
+    {
+      return $file->isFile();
+    };
+    
+    $trim_path = function($file) use($path)
+    {
+      return substr($file, strlen($path) + 1);
+    };
+    
+    $iterator = new new RecursiveDirectoryIterator($path);
+    $iterator = new RecursiveIteratorIterator($iterator);
+    
+    $files = iterator_to_array($iterator);
+    $files = array_filter($files, $only_files);
+    
+    return array_map($trim_path, $files);
   }
 }
