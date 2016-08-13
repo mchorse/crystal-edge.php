@@ -1,0 +1,14 @@
+{
+    "name": "mchorse/crystal-edge",
+    "description": "Simple light-weight static website engine",
+    "version": "0.1",
+    "autoload": {
+        "psr-4": {
+            "crystal\\edge\\": "src/"
+        },
+        "files": []
+    },
+    "require": {
+        "php": ">=5.4.0"
+    }
+}
