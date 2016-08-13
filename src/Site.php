@@ -1,5 +1,7 @@
 <?php
 
+namespace crystal\edge;
+
 /**
  * Site class
  *
@@ -21,7 +23,7 @@ class Site
   /**
    * Initiate with extraction method
    */
-  public function __construct(Extraction $extract)
+  public function __construct(Extract $extract)
   {
     $this->pages = $extract->extract();
   }
