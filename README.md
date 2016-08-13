@@ -13,6 +13,20 @@ use crystal\edge\FileSystemExtract;
 use crystal\edge\Site;
 
 /* Filters */
+$read = function($pages)
+{
+  $output = [];
+
+  foreach($pages as $page)
+  {
+    $output[$page] = [
+      'content' => file_get_contents("./content/$page")
+    ];
+  }
+
+  return $output;
+};
+
 $parsedown = function($pages)
 {
   return array_map(function($data)
@@ -25,9 +39,7 @@ $parsedown = function($pages)
 
 /* Website */
 $site = new Site(new FileSystemExtract('./content/'));
-$site->filters = [
-  $parsedown
-];
+$site->filters = [$read, $parsedown];
 
 /* Build code */
 foreach($site->process() as $path => $content)
