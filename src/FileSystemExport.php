@@ -25,7 +25,7 @@ class FileSystemExport implements Export
    */
   public function __construct(Site $site, $path)
   {
-    $this->site = $site;
+    $this->site = realpath($site);
     $this->path = $path;
   }
   
