@@ -9,6 +9,7 @@ not tested and still in development. This is written on iPad in Notes app (serio
 <?php
 
 /* Crystal Edge's imports */
+use crystal\edge\FileSystemExport;
 use crystal\edge\FileSystemExtract;
 use crystal\edge\Site;
 /* Utils */
@@ -22,13 +23,8 @@ $parsedown = apply('content', 'content', [new Parsedown, 'text']);
 $site = new Site(new FileSystemExtract('./content/'));
 $site->filters = [$read, $parsedown];
 
-/* Build code */
-foreach($site->process() as $path => $content)
-{
-  @mkdir("./build/$path", 0777, true);
-  file_put_content("./build/$path", $content['output']);
-}
-
+/* Build it */
+(new FileSystemExport($site, './build/')->export();
 ```
 
 ## License
