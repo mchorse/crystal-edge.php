@@ -37,7 +37,7 @@ class FileSystemExport implements Export
     foreach ($this->site->process() as $path => $content)
     {
       $path = "{$this->path}/$path";
-      $folder = substr($path, strpos($path, '/'));
+      $folder = substr($path, strrpos($path, '/'));
       
       if (!is_dir($folder)) mkdir($folder, 0777, true);
       
