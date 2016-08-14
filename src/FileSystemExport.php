@@ -32,16 +32,22 @@ class FileSystemExport implements Export
   /**
    * Export a site to build folder
    */
-  public function export()
+  public function export(Logger $logger = null)
   {
     foreach ($this->site->process() as $path => $content)
     {
-      $path = "{$this->path}/$path";
-      $folder = substr($path, strrpos($path, '/'));
+      $dest = "{$this->path}/$path";
+      $folder = substr($dest, strrpos($dest, '/'));
       
-      if (!is_dir($folder)) mkdir($folder, 0777, true);
+      if (!is_dir($folder)) 
+      {
+        mkdir($folder, 0777, true);
+      }
       
-      file_put_contents($path, $content['output']);
+      if (file_put_contents($dest, $content['output']) && $logger)
+      {
+        $logger->log(Logger::INFO, 'Web page %s was compiled at %s', [$path, $dest]);
+      }
     }
     
     return true;
