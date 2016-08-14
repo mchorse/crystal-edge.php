@@ -17,7 +17,7 @@ use crystal\edge;
 
 /* Filters */
 $read = apply('path', 'content', 'file_get_contents');
-$parsedown = apply('content', 'content', [new Parsedown, 'text']);
+$parsedown = apply('content', 'output', [new Parsedown, 'text']);
 
 /* Website */
 $site = new Site(new FileSystemExtract('./content/'));
