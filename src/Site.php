@@ -16,9 +16,10 @@ class Site
   protected $pages = [];
   
   /**
-   * @var array $filters Callable filters which responsible for modifying data
+   * @var array $plugins Callable plugins which add functionality by manipulating 
+   *                     pages data
    */
-  public $filters = [];
+  public $plugins = [];
   
   /**
    * Initiate with extraction method
@@ -29,7 +30,7 @@ class Site
   }
   
   /** 
-   * Process pages via filters and return the content
+   * Process pages via plugins and return the content
    * 
    * @return array
    */
@@ -37,9 +38,9 @@ class Site
   {
     $pages = $this->pages;
 
-    foreach ($this->filters as $filter)
+    foreach ($this->plugins as $plugin)
     {
-      $pages = $filter($pages);
+      $pages = $plugin($pages);
     }
     
     return $pages ?: [];
