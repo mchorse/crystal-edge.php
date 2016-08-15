@@ -46,7 +46,7 @@ class FileSystemExtract implements Extract
   }
   
   /**
-   * Exclude the path from the given file path
+   * Exclude the path from the given file path including one slash
    * 
    * @param string $path Given file path
    * @return string
