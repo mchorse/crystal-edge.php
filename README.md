@@ -23,9 +23,22 @@ $read = crystal\edge\apply('path', 'content', 'file_get_contents');
 /** Convert markdown into HTML */
 $parsedown = crystal\edge\apply('content', 'output', [new Parsedown, 'text']);
 
+/** Add .html extension */
+$extension = function($pages)
+{
+  $output = [];
+  
+  foreach ($pages as $path => $page)
+  {
+    $output["$path.html"] = $page;
+  }
+  
+  return $output;
+};
+
 /* Website */
 $site = new Site(new FileSystemExtract('./content/'));
-$site->plugins = [$read, $parsedown];
+$site->plugins = [$read, $parsedown, $extension];
 
 /* Build and ship it */
 (new FileSystemExport($site, './build/')->export();
