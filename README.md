@@ -5,7 +5,12 @@ not tested and still in development. This is written on iPad in Notes app (serio
 
 ## Example
 
-Basic example:
+Basic example.
+
+This code takes all files in current's path `content` folder, extracts files 
+from content folder, reads the content of those files, process them with Parsedown, 
+replacing the paths from `.md` to `.html` extension, and builds those files into 
+`./build` directory.
 
 ```php
 <?php
@@ -23,10 +28,10 @@ $read = crystal\edge\apply('path', 'content', 'file_get_contents');
 /** Convert markdown into HTML */
 $parsedown = crystal\edge\apply('content', 'output', [new Parsedown, 'text']);
 
-/** Add .html extension */
+/** Replace markdown with html extension */
 $extension = crystal\edge\remap(function($key)
 {
-  return "$key.html";
+  return str_replace('.md', '.html', $key);
 });
 
 /* Website */
@@ -37,7 +42,11 @@ $site->plugins = [$read, $parsedown, $extension];
 (new FileSystemExport($site, './build/')->export();
 ```
 
-There's also Wiki available on [GitHub](https://github.com/mchorse/crystal-edge.php/wiki) (on which I'm working).
+As the result, you get compiled static website from markdown in html in 
+the `build` folder.
+
+There's also Wiki available on [GitHub](https://github.com/mchorse/crystal-edge.php/wiki) 
+(on which I'm working).
 
 ## License
 
