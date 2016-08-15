@@ -34,7 +34,7 @@ function filter(callable $func)
     }
     
     return $output;
-  }
+  };
 }
 
 /**
