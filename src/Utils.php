@@ -13,10 +13,28 @@ namespace crystal\edge;
  */
 function process(callable $func)
 {
-  return function($pages)
+  return function($pages) use($func)
   {
     return array_map($func, $pages);
   };
+}
+
+/**
+ * Filter given pages according to callable
+ */
+function filter(callable $func)
+{
+  return function($pages)
+  {
+    $output = [];
+    
+    foreach($pages as $key => $value) use($func)
+    {
+      if ($func($value, $key)) $output[$key] = $value;
+    }
+    
+    return $output;
+  }
 }
 
 /**
@@ -48,4 +66,4 @@ function remap(callable $func)
     
     return $output;
   };
-};
+}
