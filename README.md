@@ -24,17 +24,10 @@ $read = crystal\edge\apply('path', 'content', 'file_get_contents');
 $parsedown = crystal\edge\apply('content', 'output', [new Parsedown, 'text']);
 
 /** Add .html extension */
-$extension = function($pages)
+$extension = crystal\edge\remap(function($key)
 {
-  $output = [];
-  
-  foreach ($pages as $path => $page)
-  {
-    $output["$path.html"] = $page;
-  }
-  
-  return $output;
-};
+  return "$key.html";
+});
 
 /* Website */
 $site = new Site(new FileSystemExtract('./content/'));
