@@ -22,6 +22,12 @@ use crystal\edge\Site;
 
 /* Website plugins */
 
+/** Only markdown files */
+$only_md = crystal\edge\filter(function($_, $path)
+{
+  return preg_match('/\.md$/', $path);
+});
+
 /** Read files from FS */
 $read = crystal\edge\apply('path', 'content', 'file_get_contents');
 
@@ -36,7 +42,7 @@ $extension = crystal\edge\remap(function($key)
 
 /* Website */
 $site = new Site(new FileSystemExtract('./content/'));
-$site->plugins = [$read, $parsedown, $extension];
+$site->plugins = [$only_md, $read, $parsedown, $extension];
 
 /* Build and ship it */
 (new FileSystemExport($site, './build/')->export();
