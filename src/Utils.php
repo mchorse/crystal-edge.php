@@ -30,4 +30,22 @@ function apply($from, $to, callable $func)
     
     return $data;
   });
+}
+
+/**
+ * Remap all keys in the array
+ */
+function remap(callable $func)
+{
+  return function($pages) use($func)
+  {
+    $output = [];
+    
+    foreach($pages as $key => $value)
+    {
+      $output[$func($key, $value)] = $value;
+    }
+    
+    return $output;
+  };
 };
