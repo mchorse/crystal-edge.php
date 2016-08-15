@@ -5,6 +5,8 @@ not tested and still in development. This is written on iPad in Notes app (serio
 
 ## Example
 
+Basic example:
+
 ```php
 <?php
 
@@ -12,20 +14,24 @@ not tested and still in development. This is written on iPad in Notes app (serio
 use crystal\edge\FileSystemExport;
 use crystal\edge\FileSystemExtract;
 use crystal\edge\Site;
-/* Utils */
-use crystal\edge;
 
-/* Filters */
-$read = apply('path', 'content', 'file_get_contents');
-$parsedown = apply('content', 'output', [new Parsedown, 'text']);
+/* Website plugins */
+
+/** Read files from FS */
+$read = crystal\edge\apply('path', 'content', 'file_get_contents');
+
+/** Convert markdown into HTML */
+$parsedown = crystal\edge\apply('content', 'output', [new Parsedown, 'text']);
 
 /* Website */
 $site = new Site(new FileSystemExtract('./content/'));
-$site->filters = [$read, $parsedown];
+$site->plugins = [$read, $parsedown];
 
-/* Build it */
+/* Build and ship it */
 (new FileSystemExport($site, './build/')->export();
 ```
+
+There's also Wiki available on [GitHub](https://github.com/mchorse/crystal-edge.php/wiki) (on which I'm working).
 
 ## License
 
