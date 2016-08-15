@@ -29,14 +29,13 @@ class FileSystemExtract implements Extract
   {
     $iterator = new RecursiveDirectoryIterator($this->path);
     $iterator = new RecursiveIteratorIterator($iterator);
-    
+
+    $pages = [];
     $files = iterator_to_array($iterator);
     $files = array_filter($files, function($file)
     {
       return $file->isFile();
     });
-    
-    $pages = [];
     
     foreach($files as $path)
     {
