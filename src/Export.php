@@ -11,11 +11,11 @@ namespace crystal\edge;
  */
 interface Export
 {
-  /**
-   * Export the website
-   * 
-   * @param \crystal\edge\Logger|null $logger Logger implementation
-   * @return bool
-   */ 
-  public function export(Logger $logger = null);
+    /**
+     * Export the website
+     * 
+     * @param \crystal\edge\Logger|null $logger Logger implementation
+     * @return bool
+     */ 
+    public function export(Logger $logger = null);
 }

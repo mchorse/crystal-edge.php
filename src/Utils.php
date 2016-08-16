@@ -13,10 +13,10 @@ namespace crystal\edge;
  */
 function process(callable $func)
 {
-  return function($pages) use($func)
-  {
-    return array_map($func, $pages);
-  };
+    return function($pages) use($func)
+    {
+        return array_map($func, $pages);
+    };
 }
 
 /**
@@ -24,17 +24,17 @@ function process(callable $func)
  */
 function filter(callable $func)
 {
-  return function($pages)
-  {
-    $output = [];
-    
-    foreach($pages as $key => $value) use($func)
+    return function($pages)
     {
-      if ($func($value, $key)) $output[$key] = $value;
-    }
-    
-    return $output;
-  };
+        $output = [];
+        
+        foreach($pages as $key => $value) use($func)
+        {
+            if ($func($value, $key)) $output[$key] = $value;
+        }
+        
+        return $output;
+    };
 }
 
 /**
@@ -42,12 +42,12 @@ function filter(callable $func)
  */
 function apply($from, $to, callable $func)
 {
-  return process(function($data) use($from, $to, $func)
-  {
-    $data[$to] = $func($data[$from]);
-    
-    return $data;
-  });
+    return process(function($data) use($from, $to, $func)
+    {
+        $data[$to] = $func($data[$from]);
+        
+        return $data;
+    });
 }
 
 /**
@@ -55,15 +55,15 @@ function apply($from, $to, callable $func)
  */
 function remap(callable $func)
 {
-  return function($pages) use($func)
-  {
-    $output = [];
-    
-    foreach($pages as $key => $value)
+    return function($pages) use($func)
     {
-      $output[$func($key, $value)] = $value;
-    }
-    
-    return $output;
-  };
+        $output = [];
+        
+        foreach($pages as $key => $value)
+        {
+            $output[$func($key, $value)] = $value;
+        }
+        
+        return $output;
+    };
 }

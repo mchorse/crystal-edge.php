@@ -10,10 +10,10 @@ namespace crystal\edge;
  */
 interface Extract
 {
-  /**
-   * Extract web pages from some (DB, cache, FS, array) source 
-   * 
-   * @return array
-   */
-  public function extract();
+    /**
+     * Extract web pages from some (DB, cache, FS, array) source 
+     * 
+     * @return array
+     */
+    public function extract();
 }
