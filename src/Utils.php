@@ -24,11 +24,11 @@ function process(callable $func)
  */
 function filter(callable $func)
 {
-    return function($pages)
+    return function($pages) use($func)
     {
         $output = [];
         
-        foreach($pages as $key => $value) use($func)
+        foreach($pages as $key => $value)
         {
             if ($func($value, $key)) $output[$key] = $value;
         }

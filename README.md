@@ -45,7 +45,7 @@ $site = new Site(new FileSystemExtract('./content/'));
 $site->plugins = [$only_md, $read, $parsedown, $extension];
 
 /* Build and ship it */
-(new FileSystemExport($site, './build/')->export();
+(new FileSystemExport($site, './build/'))->export();
 ```
 
 As the result, you get compiled static website from markdown in html in 
