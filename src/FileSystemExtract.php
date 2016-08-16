@@ -27,8 +27,8 @@ class FileSystemExtract implements Extract
      */
     public function extract()
     {
-        $iterator = new RecursiveDirectoryIterator($this->path);
-        $iterator = new RecursiveIteratorIterator($iterator);
+        $iterator = new \RecursiveDirectoryIterator($this->path);
+        $iterator = new \RecursiveIteratorIterator($iterator);
 
         $pages = [];
         $files = iterator_to_array($iterator);
